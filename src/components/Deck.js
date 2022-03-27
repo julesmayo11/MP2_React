@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Card(props) {
-  //This component is for the card
+export default function Deck(props) {
   const { suit, value, flip } = props;
+
   return (
     <div className={`flip-card ${flip ? "flip" : ""}`}>
       <div className="flip-card-inner">

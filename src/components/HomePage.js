@@ -43,32 +43,6 @@ export default function HomePage(props) {
       <div className="main-container">
 
 
-        {/*
-        <ul>
-          <li>There are only 5 rounds</li>
-          <li>Each round, there are 2 cards facing up and 1 facing down</li>
-          <li>The 2 cards facing up are identical (same in value)</li>
-          <ul className="indent">
-            <li>Choose Higher or Lower with the buttons below the 3 cards</li>
-            <li>
-              If the card facing down is higher and you chose Higher, you gain
-              points - your points are halfed otherwise
-            </li>
-          </ul>
-          <li>The 2 cards facing up are not identical (not same in value)</li>
-          <ul className="indent">
-            <li>
-              Choose Deal or No Deal depending on whether or not you think the
-              value of the card facing down is in between the value of the 2 cards
-              facing up
-            </li>
-            <li>
-              If the card facing down is in between and you chose Deal, you gain
-              points - your points are halfed otherwise
-            </li>
-          </ul>
-        </ul>
-        */}
 
         <ul>
           <li>The game shall have five rounds of plays. </li>

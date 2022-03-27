@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
+import Deck from "./Deck";
 
-export default function Game(props) {
+export default function InBetween(props) {
   const { setpage, HOME, setgameState, gameState } = props;
   const deckOfCards = [
     { suit: "star", value: 1 },
@@ -59,26 +59,18 @@ export default function Game(props) {
   ];
 
   function shuffleArray(array) {
-    // console.log(`dati: ${array}`);
+
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
       array[i] = array[j];
       array[j] = temp;
     }
-    // console.log(`ngayon: ${array}`);
+
     return array;
   }
 
-  // useEffect(() => {
-  // 	let str = "";
-  // 	["star", "light", "fire", "water"].map((suit) => {
-  // 		[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => {
-  // 			str += `{suit:"${suit}",value:${value}},`;
-  // 		});
-  // 	});
-  // 	console.log(`[${str}]`);
-  // }, []);
+
 
   const [deck, setdeck] = useState(shuffleArray(deckOfCards));
   const [graveyardDeck, setgraveyardDeck] = useState([]);
@@ -90,12 +82,12 @@ export default function Game(props) {
   const [render, setrender] = useState(false);
   const [scoreCSS, setscoreCSS] = useState("");
   const [gameOver, setgameOver] = useState(false);
-  // const [flip, setflip] = useState(false);
 
-  //initial load
+
+
   useEffect(() => {
     if (gameState) {
-      // console.log(deck);
+
       let newDeck = deck;
       let newCards = cards;
       cards.push(deck.pop());
@@ -107,40 +99,15 @@ export default function Game(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   // console.log(deck);
-  // }, [deck]);
+
   useEffect(() => {
-    // console.log(`cards ${JSON.stringify(cards)}`);
+
     setrender(true);
     if (render) {
       setcardsIdentical(cards[0].value === cards[1].value);
     }
   }, [cards]);
-  // useEffect(() => {
-  // 	console.log(cards);
-  // 	if (render) {
-  // 		setcardsIdentical(cards[0].value === cards[1].value);
-  // 		// setcardsIdentical(1 === 1);
-  // 	}
-  // }, [render]);
 
-  // function handleckic() {
-  //   console.log(deck);
-  //   let newDeck = deck;
-  //   let newCards = cards;
-  //   cards.push(deck.pop());
-  //   cards.push(deck.pop());
-  //   setdeck(newDeck);
-  //   setcards(newCards);
-  // }
-
-  // function checkdeck() {
-  //   console.log(deck);
-  // }
-  // function checkcards() {
-  //   console.log(cards);
-  // }
   function deal() {
     dealer("deal");
   }
@@ -154,36 +121,7 @@ export default function Game(props) {
     dealer("lower");
   }
 
-  // function dealOrNoDeal(str) {
-  //   const inBetween =
-  //     (cards[0].value < cards[2].value && cards[1].value > cards[2].value) ||
-  //     (cards[0].value > cards[2].value && cards[1].value < cards[2].value);
-  //   let newScore = score;
-  //   console.log(inBetween);
-  //   switch (str) {
-  //     case "deal":
-  //       // deal
 
-  //       // dapat true
-  //       if (inBetween) {
-  //         newScore += 69 * round;
-  //       } else {
-  //         newScore /= 2;
-  //       }
-  //       break;
-  //     case "nodeal":
-  //       // no deal
-  //       // dapat false
-  //       if (!inBetween) {
-  //         newScore += 69 * round;
-  //       } else {
-  //         newScore /= 2;
-  //       }
-  //       break;
-  //       default:console.error('Something went wrong using dealOrNoDeal function');
-  //   }
-  //   choiceHasBeenMade(newScore);
-  // }
 
   function dealer(str) {
     const higher = cards[0].value < cards[2].value;
@@ -191,8 +129,7 @@ export default function Game(props) {
       (cards[0].value < cards[2].value && cards[1].value > cards[2].value) ||
       (cards[0].value > cards[2].value && cards[1].value < cards[2].value);
     let newScore = score;
-    // console.log(inBetween);
-    // console.log(higher);
+
     let condition;
     switch (str) {
       case "higher":
@@ -213,19 +150,15 @@ export default function Game(props) {
     if (condition) {
       newScore += 69 * round;
       setscoreCSS("green");
-      // console.log("green css");
     } else {
       newScore /= 2;
       setscoreCSS("red");
-      // console.log("red css");
     }
     choiceHasBeenMade(newScore);
     if (round === 5) setgameOver(true);
   }
 
-  // useEffect(() => {
-  //   console.log(scoreCSS);
-  // }, [scoreCSS]);
+
 
   function choiceHasBeenMade(score) {
     setscore(score);
@@ -238,10 +171,8 @@ export default function Game(props) {
     let newgraveyardDeck = graveyardDeck;
     let newRound = round + 1;
 
-    // kunin unang card sa cards tapos lagay sa graveyard
     newgraveyardDeck.push(newCards.shift());
-    // console.error(graveyardDeck);
-    // kuha ng bagong card mula sa deck
+
     newCards.push(newDeck.pop());
 
     setcards(newCards);
@@ -277,10 +208,6 @@ export default function Game(props) {
 
         
         <div className="main-container">
-          {/* {" "}
-        <button onClick={handleckic}>click</button>{" "}
-        <button onClick={checkdeck}>check deck</button>{" "}
-        <button onClick={checkcards}>check cards</button>{" "} */}
 
         {cardsIdentical ? <h1>Higher or Lower?</h1> : <h1>In-Between Card Game</h1>}
           <div className="scoreNRound">
@@ -293,15 +220,13 @@ export default function Game(props) {
 
           
           <div className="cards inb">
-            {/* {cards.length} */}
             {render &&
               cards.length > 2 &&
               cards.map((card, i) => {
-                // console.log(card);
                 return (
                   <div key={i}>
 
-                    <Card
+                    <Deck
                       suit={card.suit}
                       value={card.value}
 
@@ -334,14 +259,12 @@ export default function Game(props) {
               graveyardDeck.map((card, i) => {
                 return (
                   <div key={i}>
-                    {/* Card: {card.suit} Value: {card.value} */}
-                    {/* index  {i} */}
-                    <Card
+
+                    <Deck
                       suit={card.suit}
                       value={card.value}
-                      //   flip={i === 2 && flip}
                       flip={true}
-                      // show={choiceMade}
+
                     />
                   </div>
                 );
